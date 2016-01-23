@@ -132,7 +132,7 @@ $rom=mysql_fetch_array($rs);
 								<a href="people.php"> 在线人数</a>
 							</li>
 							<li>
-								<a href="#"><i class=""></i>安装插件</a> 
+								<a href="workspace/editor.php"><i class=""></i>在线编辑器</a> 
 							</li>
 							<li class="nav-header">
 								设置

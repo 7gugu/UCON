@@ -64,6 +64,33 @@ $rom=mysql_fetch_array($rs);
 		<link href="css/bootstrap-responsive.min.css" rel="stylesheet">
 		<link href="css/site.css" rel="stylesheet">
 		<!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+		<script type="text/javascript">
+function start1()
+{
+var xmlhttp;
+<?php
+echo "var u=\"{$name}\";";
+echo "var p=\"{$password}\";";
+?>
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    location.reload() ;
+    }
+  }
+xmlhttp.open("GET","start.php?username="+u+"&password="+p,true);
+xmlhttp.send();
+}
+</script>
 	</head>
 	<body>
 		<div class="container">
@@ -132,7 +159,7 @@ $rom=mysql_fetch_array($rs);
 								<a href="people.php"><i class=""></i> 在线人数</a>
 							</li>
 							<li>
-								<a href="#"><i class=""></i>安装插件</a> 
+								<a href="workspace/editor.php"><i class=""></i>在线编辑器</a>  
 							</li>
 							<li class="nav-header">
 								设置
@@ -164,7 +191,7 @@ $rom=mysql_fetch_array($rs);
 		</div>
 		<div class="col-md-6">
 			 
-			<button type="button" onClick="location.href='start.php'" class="btn btn-success btn-block <?php if($rtime=="1"){echo "disabled";}?>">
+			<button type="button" onClick="start1()" class="btn btn-success btn-block <?php if($rtime=="1"){echo "disabled";}?>">
 				Start
 			</button> <br>
 			<form method="post" action="socket.php">

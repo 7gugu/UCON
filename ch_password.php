@@ -16,12 +16,12 @@ $rs=mysql_query($sql); //执行sql查询
 $num=mysql_num_rows($rs); //获取记录数
 $rom=mysql_fetch_array($rs);
 	if ($password===$rom['password']){}else{
-	header("Location: index.html");
+	header("Location: login.php");
 	echo "验证失败";
 }
 }else{
 	echo "验证失败";
-	header("Location: index.html");
+	header("Location: login.php");
 
 	}
 	$query= "SELECT map,sport,sename,max FROM op WHERE username='{$name}'";
@@ -133,7 +133,7 @@ $rom=mysql_fetch_array($rs);
 								<a href="people.php"><i class=""></i> 在线人数</a>
 							</li>
 							<li>
-								<a href="#"><i class=""></i>安装插件</a> 
+								<a href="workspace/editor.php"><i class=""></i>在线编辑器</a> 
 							</li>
 							<li class="nav-header">
 								设置
@@ -162,10 +162,36 @@ $rom=mysql_fetch_array($rs);
 						}
 						?>
 						<div class="input-append">
-						<form action="up_password.php" method="post">
+						<form action="" >
 						<input type="text" class="span3" id="pw" name="pw"  placeholder="Password" >
-						<input type="submit"  class="btn btn-success" value="更改密码" />
+						<input type="button"  class="btn btn-success" value="更改密码" onclick="up()" />
 					</form>
+					
+					<script type="text/javascript">
+function up()
+{
+var xmlhttp;
+var pw = document.getElementById("pw").value;
+<?php
+echo "var u=\"{$name}\";";
+echo "var p=\"{$password}\";";
+?>
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    location.reload() ;
+	}
+    }
+  
+xmlhttp.open("GET","up_password.php?username="+u+"&password="+p+"&pw="+pw,true);
+xmlhttp.send();
+}
+</script>
 					</div>
 					</div>
 					<div class="well summary">

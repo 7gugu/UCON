@@ -152,7 +152,8 @@ if($row>0)
                     <li>
 						<i class="icon-file"></i>
                 
-						 <a class="title"><?php echo "可用时间:".$dtime."天"; ?></a><a class="close" href="ad_inser.php?del=<?php echo $inser; ?>">&times;</a> <span class="meta">认领码<em><?php echo $inser; ?></em> </span>
+						 <a class="title"><?php echo "可用时间:".$dtime."天"; ?></a><a class="close" href="ad_inser.php?del=<?php echo $inser; ?>">&times;</a> <span class="meta">分配人数:<em><?php echo $max; ?></em> </span>
+						 <span class="meta">认领码:<em><?php echo $inser; ?></em> </span>
 						
 						</li>
 						<?php

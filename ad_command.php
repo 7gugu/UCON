@@ -28,18 +28,18 @@ $rom=mysql_fetch_array($rs);
 
 	}
 	$sename=$_GET['se'];
-		$query= "SELECT map,sport,sename,max,stime FROM op WHERE username='{$sename}'";
+		$query= "SELECT rtime,sport,sename,max,dtime FROM op WHERE username='{$sename}'";
         $result = mysql_query($query) or die("Query failed : " . mysql_error());
         $line = mysql_fetch_array($result, MYSQL_ASSOC);
         $arr=array(
             $line
         );
 	extract($arr);
-	$stime=$arr[0]["stime"];
+	$dtime=$arr[0]["dtime"];
 	$max= $arr[0]["max"];
     $sename=$arr[0]["sename"];
 	$sport= $arr[0]["sport"];
-	$map= $arr[0]["map"];
+	$rtime= $arr[0]["rtime"];
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7 ]><html lang="en" class="ie6 ielt7 ielt8 ielt9"><![endif]--><!--[if IE 7 ]><html lang="en" class="ie7 ielt8 ielt9"><![endif]--><!--[if IE 8 ]><html lang="en" class="ie8 ielt9"><![endif]--><!--[if IE 9 ]><html lang="en" class="ie9"> <![endif]--><!--[if (gt IE 9)|!(IE)]><!--> 
@@ -100,22 +100,22 @@ $rom=mysql_fetch_array($rs);
 						<address>
 				 <strong>服务器控制</strong><br />状态:
 				 <?php
-                 if($stime=="1"){$sgame="Running";}else{$sgame="Stopping";}				 
+                 if($dtime=="1"){$sgame="Running";}else{$sgame="Stopping";}				 
 				 echo $sgame;
 				 ?> 
 				 <br /> 
 				 服主:<?php echo $name;?></br>
 				 人数:<?php echo $max;?><br>
 				 端口:<?php echo $sport;?><br>
-				 地图:<?php echo $map;?><br>
+				 剩余使用时间:<?php echo $dtime;?><br>
 			</address>
 			<div class="col-md-6">
 			 
-			<button type="button" onClick="location.href='ad_start.php?se=<?php echo $sename;?>'" class="btn btn-success btn-block <?php if($stime=="1"){echo "disabled";}?>">
+			<button type="button" onClick="location.href='ad_start.php?se=<?php echo $sename;?>'" class="btn btn-success btn-block <?php if($rtime=="1"){echo "disabled";}?>">
 				Start
 			</button> <br>
 			<form method="post" action="ad_socket.php?se=<?php echo $sename;?>">
-			<button type="button" value="shutdown" class="btn btn-danger btn-block <?php if($stime=="0"){echo "disabled";}?>">
+			<button type="button" value="shutdown" class="btn btn-danger btn-block <?php if($rtime=="0"){echo "disabled";}?>">
 				Stop
 			</button>
 			</form>

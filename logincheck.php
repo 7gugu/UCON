@@ -57,7 +57,7 @@ setcookie("password", $password, time()+3600);
 
 echo "密码不正确";
 
-echo "<a href='index.html'>返回登陆页面</a>";
+echo "<a href='login.php'>返回登陆页面</a>";
 
 } 
 
@@ -66,7 +66,7 @@ echo "<a href='index.html'>返回登陆页面</a>";
  echo "用户不存在";
  
 
- echo "<a href='index.html'>返回登陆页面</a>";
+ echo "<a href='login.php'>返回登陆页面</a>";
 
 }
 

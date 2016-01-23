@@ -1,8 +1,8 @@
 <?php
 require 'pz.php';
-if (isset($_COOKIE["username"])){
-$name=$_COOKIE["username"];
-$password=$_COOKIE["password"];
+if (isset($_GET["username"])){
+$name=$_GET["username"];
+$password=$_GET["password"];
 ///连接数据库
 $dblink=mysql_connect($db_ip,$db_username,$db_password) or die("数据库连接失败");
 //设置字符串编码
@@ -72,13 +72,6 @@ fwrite($handle,"Perspective ".$Perspective."\r\n");
 fwrite($handle,"welcome ".$welcome."\r\n");
 fwrite($handle,$pvpe);
 fclose($handle); 
-//creat hello.txt
-$file2=$g_path."\\servers\\".$sename."\\hello.txt";
-echo $file2;
-$handle=fopen($file2,"w+");
-fwrite($handle,"Hello guys\r\n");
-fwrite($handle,"welcome to use the Hrun editor\r\n");
-fclose($handle); 
 //UPDATE TIME
 $s="1";
 mysql_query("UPDATE op SET   rtime= '{$s}' WHERE username = '{$name}'");
@@ -87,11 +80,14 @@ $handle1=fopen($file1,"w+");
 fwrite($handle1,$sename);
 mysql_query("UPDATE op SET   rtime= '1' WHERE username = '{$name}'");
 fclose($handle1); 
-header("Location: main.php");
+echo "启动流程ok";
 	}else{
-		echo "已开服！";
-		header("Location: main.php");
+		echo "已开服";
 	}
+}else{
+	echo "用户名或者密码错误";
 }
+}else{
+	echo "error";
 }
 ?> 
